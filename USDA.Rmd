@@ -1,6 +1,6 @@
 ---
 # Get YAML keywords from myYAML_ref.Rmd
-title: "USDA: ??? regression"
+title: "USDA: <Predicted attribute> regression"
 author: "bdanalytics"
 pandoc_args: ["+RTS", "-K64M", "-RTS"]
 
@@ -51,7 +51,7 @@ source("~/Dropbox/datascience/R/mypetrinet.R")
 # Gather all package requirements here
 #suppressPackageStartupMessages(require())
 
-require(sos); findFn("pinv", maxPages=2, sortby="MaxScore")
+#require(sos); findFn("pinv", maxPages=2, sortby="MaxScore")
 
 # Analysis sepcific global variables
 glb_separate_predict_dataset <- FALSE
@@ -64,13 +64,16 @@ print(script_df)
 ```{r import_data, cache=TRUE}
 entity_df <- myimport_data(
     url="https://courses.edx.org/c4x/MITx/15.071x_2/asset/USDA.csv", 
-    print_diagn=FALSE)
+    print_diagn=TRUE)
 if (glb_separate_predict_dataset) {
     predict_df <- myimport_data(
         url="<url>", 
-        print_diagn=FALSE)
-} else predict_df <- entity_df[sample(1:nrow(entity_df), nrow(entity_df) / 1000),]     
-
+        print_diagn=TRUE)
+} else {
+    predict_df <- entity_df[sample(1:nrow(entity_df), nrow(entity_df) / 1000),]
+    myprint_df(predict_df)
+    str(predict_df)
+}
 script_df <- rbind(script_df, 
                    data.frame(chunk_label="inspect_data", 
                               chunk_step_major=max(script_df$chunk_step_major)+1, 
