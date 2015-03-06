@@ -105,13 +105,27 @@ require(sos); findFn(&quot;pinv&quot;, maxPages=2, sortby=&quot;MaxScore&quot;)<
 <pre><code>## found 69 matches;  retrieving 2 pages, 40 matches.
 ## 2 
 ## Downloaded 35 links in 13 packages.</code></pre>
-<pre class="r"><code>script_df &lt;- data.frame(chunk_label=&quot;import_data&quot;, chunk_step_major=1, chunk_step_minor=0)
+<pre class="r"><code># Analysis sepcific global variables
+glb_separate_predict_dataset &lt;- FALSE
+
+script_df &lt;- data.frame(chunk_label=&quot;import_data&quot;, chunk_step_major=1, chunk_step_minor=0)
 print(script_df)</code></pre>
 <pre><code>##   chunk_label chunk_step_major chunk_step_minor
 ## 1 import_data                1                0</code></pre>
 <div id="step-1-import-data" class="section level2">
 <h2>Step <code>1</code>: import data</h2>
-<pre class="r"><code>script_df &lt;- rbind(script_df, 
+<pre class="r"><code>entity_df &lt;- myimport_data(
+    url=&quot;https://courses.edx.org/c4x/MITx/15.071x_2/asset/USDA.csv&quot;, 
+    print_diagn=FALSE)</code></pre>
+<pre><code>## [1] &quot;Reading file ./data/USDA.csv...&quot;
+## [1] &quot;dimensions of data in ./data/USDA.csv: 7,058 rows x 16 cols&quot;</code></pre>
+<pre class="r"><code>if (glb_separate_predict_dataset) {
+    predict_df &lt;- myimport_data(
+        url=&quot;&lt;url&gt;&quot;, 
+        print_diagn=FALSE)
+} else predict_df &lt;- entity_df[sample(1:nrow(entity_df), nrow(entity_df) / 1000),]     
+
+script_df &lt;- rbind(script_df, 
                    data.frame(chunk_label=&quot;inspect_data&quot;, 
                               chunk_step_major=max(script_df$chunk_step_major)+1, 
                               chunk_step_minor=1))
@@ -136,9 +150,9 @@ print(script_df)</code></pre>
 #   Convert factors to dummy variables
 #   Build splines   require(splines); bsBasis &lt;- bs(training$age, df=3)</code></pre>
 <p>Null Hypothesis (<span class="math">\(\sf{H_{0}}\)</span>): mpg is not impacted by am_fctr.<br />The variance by am_fctr appears to be independent.</p>
-<pre class="r"><code>#print(t.test(subset(cars_df, am_fctr == &quot;automatic&quot;)$mpg, 
-#             subset(cars_df, am_fctr == &quot;manual&quot;)$mpg, 
-#             var.equal=FALSE)$conf)</code></pre>
+<pre class="r"><code># print(t.test(subset(cars_df, am_fctr == &quot;automatic&quot;)$mpg, 
+#              subset(cars_df, am_fctr == &quot;manual&quot;)$mpg, 
+#              var.equal=FALSE)$conf)</code></pre>
 <p>We reject the null hypothesis i.e. we have evidence to conclude that am_fctr impacts mpg (95% confidence). Manual transmission is better for miles per gallon versus automatic transmission.</p>
 </div>
 </div>

@@ -1,26 +1,8 @@
----
-# Get YAML keywords from myYAML_ref.Rmd
-title: "USDA: ??? regression"
-author: "bdanalytics"
-pandoc_args: ["+RTS", "-K64M", "-RTS"]
-
-# Choose one:
-output:
-    html_document:
-        keep_md: yes
-
-# output:
-#   pdf_document:
-#     fig_width: 8
-#     highlight: zenburn
-#     #keep_md: yes
-#     keep_tex: yes
-#     number_sections: yes
-#     toc: yes
----
+# USDA: ??? regression
+bdanalytics  
 
 **  **    
-**Date: `r format(Sys.time(), "(%a) %b %d, %Y")`**    
+**Date: (Fri) Mar 06, 2015**    
 
 # Introduction:  
 
@@ -28,9 +10,7 @@ Data:
 Source: 
 Time period: 
 
-```{r set_global_options_wd, echo=FALSE}
-setwd("~/Documents/Work/Courses/MIT/Analytics_Edge_15_071x/Recitations/Unit1_USDA")
-```
+
 
 # Synopsis:
 
@@ -41,7 +21,8 @@ Based on analysis utilizing <> techniques, <conclusion heading>:
 ## Potential next steps include:
 
 # Analysis: 
-```{r set_global_options}
+
+```r
 rm(list=ls())
 set.seed(12345)
 options(stringsAsFactors=FALSE)
@@ -52,7 +33,26 @@ source("~/Dropbox/datascience/R/mypetrinet.R")
 #suppressPackageStartupMessages(require())
 
 require(sos); findFn("pinv", maxPages=2, sortby="MaxScore")
+```
 
+```
+## Loading required package: sos
+## Loading required package: brew
+## 
+## Attaching package: 'sos'
+## 
+## The following object is masked from 'package:utils':
+## 
+##     ?
+```
+
+```
+## found 69 matches;  retrieving 2 pages, 40 matches.
+## 2 
+## Downloaded 35 links in 13 packages.
+```
+
+```r
 # Analysis sepcific global variables
 glb_separate_predict_dataset <- FALSE
 
@@ -60,11 +60,25 @@ script_df <- data.frame(chunk_label="import_data", chunk_step_major=1, chunk_ste
 print(script_df)
 ```
 
-## Step ``r script_df[nrow(script_df), "chunk_step_major"]``: import data
-```{r import_data, cache=TRUE}
+```
+##   chunk_label chunk_step_major chunk_step_minor
+## 1 import_data                1                0
+```
+
+## Step `1`: import data
+
+```r
 entity_df <- myimport_data(
     url="https://courses.edx.org/c4x/MITx/15.071x_2/asset/USDA.csv", 
     print_diagn=FALSE)
+```
+
+```
+## [1] "Reading file ./data/USDA.csv..."
+## [1] "dimensions of data in ./data/USDA.csv: 7,058 rows x 16 cols"
+```
+
+```r
 if (glb_separate_predict_dataset) {
     predict_df <- myimport_data(
         url="<url>", 
@@ -78,8 +92,15 @@ script_df <- rbind(script_df,
 print(script_df)
 ```
 
-### Step ``r script_df[nrow(script_df), "chunk_step_major"]``.``r script_df[nrow(script_df), "chunk_step_minor"]``: inspect data
-```{r inspect_data_1, cache=TRUE}
+```
+##    chunk_label chunk_step_major chunk_step_minor
+## 1  import_data                1                0
+## 2 inspect_data                2                1
+```
+
+### Step `2`.`1`: inspect data
+
+```r
 #print(str(entity_df))
 #View(entity_df)
 
@@ -94,12 +115,12 @@ print(script_df)
 # Create new features that help diagnostics
 #   Convert factors to dummy variables
 #   Build splines   require(splines); bsBasis <- bs(training$age, df=3)
-
 ```
 
 Null Hypothesis ($\sf{H_{0}}$): mpg is not impacted by am_fctr.  
 The variance by am_fctr appears to be independent. 
-```{r q1, cache=TRUE}
+
+```r
 # print(t.test(subset(cars_df, am_fctr == "automatic")$mpg, 
 #              subset(cars_df, am_fctr == "manual")$mpg, 
 #              var.equal=FALSE)$conf)
@@ -135,6 +156,26 @@ We reject the null hypothesis i.e. we have evidence to conclude that am_fctr imp
 #text(mdl_1$finalModel, use.n=TRUE, all=TRUE, cex=0.8)
 
 
-```{r print_sessionInfo, echo=FALSE}
-sessionInfo()
+
+```
+## R version 3.1.2 (2014-10-31)
+## Platform: x86_64-apple-darwin13.4.0 (64-bit)
+## 
+## locale:
+## [1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+## 
+## attached base packages:
+## [1] stats     graphics  grDevices utils     datasets  methods   base     
+## 
+## other attached packages:
+## [1] sos_1.3-8       brew_1.0-6      doBy_4.5-13     survival_2.38-1
+## [5] ggplot2_1.0.0  
+## 
+## loaded via a namespace (and not attached):
+##  [1] codetools_0.2-10 colorspace_1.2-5 digest_0.6.8     evaluate_0.5.5  
+##  [5] formatR_1.0      grid_3.1.2       gtable_0.1.2     htmltools_0.2.6 
+##  [9] knitr_1.9        lattice_0.20-30  MASS_7.3-39      Matrix_1.1-5    
+## [13] munsell_0.4.2    plyr_1.8.1       proto_0.3-10     Rcpp_0.11.4     
+## [17] reshape2_1.4.1   rmarkdown_0.5.1  scales_0.2.4     splines_3.1.2   
+## [21] stringr_0.6.2    tcltk_3.1.2      tools_3.1.2      yaml_2.1.13
 ```
