@@ -2,7 +2,7 @@
 bdanalytics  
 
 **  **    
-**Date: (Fri) Mar 06, 2015**    
+**Date: (Sun) Mar 08, 2015**    
 
 # Introduction:  
 
@@ -221,12 +221,190 @@ print(script_df)
 # date:
 # interval:
 
-#print(summary(entity_df))
+print(summary(entity_df))
+```
+
+```
+##        ID        Description           Calories        Protein     
+##  Min.   : 1001   Length:7058        Min.   :  0.0   Min.   : 0.00  
+##  1st Qu.: 8387   Class :character   1st Qu.: 85.0   1st Qu.: 2.29  
+##  Median :13294   Mode  :character   Median :181.0   Median : 8.20  
+##  Mean   :14260                      Mean   :219.7   Mean   :11.71  
+##  3rd Qu.:18337                      3rd Qu.:331.0   3rd Qu.:20.43  
+##  Max.   :93600                      Max.   :902.0   Max.   :88.32  
+##                                     NA's   :1       NA's   :1      
+##     TotalFat       Carbohydrate        Sodium         SaturatedFat   
+##  Min.   :  0.00   Min.   :  0.00   Min.   :    0.0   Min.   : 0.000  
+##  1st Qu.:  0.72   1st Qu.:  0.00   1st Qu.:   37.0   1st Qu.: 0.172  
+##  Median :  4.37   Median :  7.13   Median :   79.0   Median : 1.256  
+##  Mean   : 10.32   Mean   : 20.70   Mean   :  322.1   Mean   : 3.452  
+##  3rd Qu.: 12.70   3rd Qu.: 28.17   3rd Qu.:  386.0   3rd Qu.: 4.028  
+##  Max.   :100.00   Max.   :100.00   Max.   :38758.0   Max.   :95.600  
+##  NA's   :1        NA's   :1        NA's   :84        NA's   :301     
+##   Cholesterol          Sugar           Calcium             Iron        
+##  Min.   :   0.00   Min.   : 0.000   Min.   :   0.00   Min.   :  0.000  
+##  1st Qu.:   0.00   1st Qu.: 0.000   1st Qu.:   9.00   1st Qu.:  0.520  
+##  Median :   3.00   Median : 1.395   Median :  19.00   Median :  1.330  
+##  Mean   :  41.55   Mean   : 8.257   Mean   :  73.53   Mean   :  2.828  
+##  3rd Qu.:  69.00   3rd Qu.: 7.875   3rd Qu.:  56.00   3rd Qu.:  2.620  
+##  Max.   :3100.00   Max.   :99.800   Max.   :7364.00   Max.   :123.600  
+##  NA's   :288       NA's   :1910     NA's   :136       NA's   :123      
+##    Potassium          VitaminC           VitaminE          VitaminD       
+##  Min.   :    0.0   Min.   :   0.000   Min.   :  0.000   Min.   :  0.0000  
+##  1st Qu.:  135.0   1st Qu.:   0.000   1st Qu.:  0.120   1st Qu.:  0.0000  
+##  Median :  250.0   Median :   0.000   Median :  0.270   Median :  0.0000  
+##  Mean   :  301.4   Mean   :   9.436   Mean   :  1.488   Mean   :  0.5769  
+##  3rd Qu.:  348.0   3rd Qu.:   3.100   3rd Qu.:  0.710   3rd Qu.:  0.1000  
+##  Max.   :16500.0   Max.   :2400.000   Max.   :149.400   Max.   :250.0000  
+##  NA's   :409       NA's   :332        NA's   :2720      NA's   :2834
+```
+
+```r
+print(summary(predict_df))
+```
+
+```
+##        ID        Description           Calories        Protein     
+##  Min.   : 2025   Length:7           Min.   : 65.0   Min.   : 1.61  
+##  1st Qu.: 8200   Class :character   1st Qu.:175.5   1st Qu.: 6.17  
+##  Median :13384   Mode  :character   Median :210.0   Median : 7.60  
+##  Mean   :15909                      Mean   :261.3   Mean   :13.50  
+##  3rd Qu.:18116                      3rd Qu.:339.0   3rd Qu.:21.14  
+##  Max.   :43325                      Max.   :525.0   Max.   :30.68  
+##                                                                    
+##     TotalFat      Carbohydrate       Sodium       SaturatedFat   
+##  Min.   : 2.82   Min.   : 0.00   Min.   : 16.0   Min.   : 0.599  
+##  1st Qu.: 5.60   1st Qu.: 0.25   1st Qu.: 61.5   1st Qu.: 1.585  
+##  Median : 9.44   Median : 8.06   Median :388.0   Median : 2.624  
+##  Mean   :12.86   Mean   :24.06   Mean   :356.1   Mean   : 5.797  
+##  3rd Qu.:15.12   3rd Qu.:46.30   3rd Qu.:498.5   3rd Qu.: 4.121  
+##  Max.   :36.31   Max.   :67.30   Max.   :969.0   Max.   :25.940  
+##                                                                  
+##   Cholesterol        Sugar          Calcium         Iron      
+##  Min.   :  0.0   Min.   : 0.00   Min.   :  0   Min.   :0.590  
+##  1st Qu.:  0.0   1st Qu.: 0.00   1st Qu.: 11   1st Qu.:1.605  
+##  Median :  0.0   Median : 0.00   Median : 25   Median :2.260  
+##  Mean   : 31.0   Mean   : 5.86   Mean   : 53   Mean   :2.122  
+##  3rd Qu.: 57.5   3rd Qu.: 0.81   3rd Qu.: 70   3rd Qu.:2.855  
+##  Max.   :102.0   Max.   :28.49   Max.   :184   Max.   :3.180  
+##                  NA's   :2                     NA's   :1      
+##    Potassium        VitaminC         VitaminE        VitaminD    
+##  Min.   :124.0   Min.   :0.0000   Min.   :0.000   Min.   :0.000  
+##  1st Qu.:244.5   1st Qu.:0.0000   1st Qu.:0.045   1st Qu.:0.075  
+##  Median :337.0   Median :0.0000   Median :0.090   Median :0.400  
+##  Mean   :315.7   Mean   :0.4714   Mean   :0.115   Mean   :0.400  
+##  3rd Qu.:356.0   3rd Qu.:0.1500   3rd Qu.:0.160   3rd Qu.:0.725  
+##  Max.   :548.0   Max.   :3.0000   Max.   :0.280   Max.   :0.800  
+##                                   NA's   :3       NA's   :3
+```
+
+```r
 #pairs(subset(entity_df, select=-c(col_symbol)))
+
+#   Histogram of predictor in entity_df & predict_df
+# Check for predict_df & entity_df features range mismatches
 
 # Create new features that help diagnostics
 #   Convert factors to dummy variables
 #   Build splines   require(splines); bsBasis <- bs(training$age, df=3)
+
+script_df <- rbind(script_df, 
+                   data.frame(chunk_label="extract_features", 
+                              chunk_step_major=max(script_df$chunk_step_major)+1, 
+                              chunk_step_minor=0))
+print(script_df)
+```
+
+```
+##        chunk_label chunk_step_major chunk_step_minor
+## 1      import_data                1                0
+## 2     inspect_data                2                1
+## 3 extract_features                3                0
+```
+
+## Step `3`: extract features
+
+```r
+require(plyr)
+```
+
+```
+## Loading required package: plyr
+```
+
+```r
+entity_df <- mutate(entity_df, 
+    HighSodium = as.numeric(Sodium >= mean(entity_df$Sodium, na.rm=TRUE)),
+    HighProtein = as.numeric(Protein >= mean(entity_df$Protein, na.rm=TRUE)),
+    HighCarbs = as.numeric(Carbohydrate >= mean(entity_df$Carbohydrate, na.rm=TRUE)),
+    HighFat = as.numeric(TotalFat >= mean(entity_df$TotalFat, na.rm=TRUE))
+                    )
+
+table(entity_df$HighSodium)
+```
+
+```
+## 
+##    0    1 
+## 4884 2090
+```
+
+```r
+table(entity_df$HighSodium, entity_df$HighFat)
+```
+
+```
+##    
+##        0    1
+##   0 3529 1355
+##   1 1378  712
+```
+
+```r
+tapply(entity_df$Iron, entity_df$HighProtein, mean, na.rm=TRUE)
+```
+
+```
+##        0        1 
+## 2.558945 3.197294
+```
+
+```r
+tapply(entity_df$VitaminC, entity_df$HighCarbs, max, na.rm=TRUE)
+```
+
+```
+##      0      1 
+## 1677.6 2400.0
+```
+
+```r
+tapply(entity_df$VitaminC, entity_df$HighCarbs, summary)
+```
+
+```
+## $`0`
+##     Min.  1st Qu.   Median     Mean  3rd Qu.     Max.     NA's 
+##    0.000    0.000    0.000    6.364    2.800 1678.000      248 
+## 
+## $`1`
+##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
+##    0.00    0.00    0.20   16.31    4.50 2400.00      83
+```
+
+```r
+# script_df <- rbind(script_df, 
+#                    data.frame(chunk_label="extract_features", 
+#                               chunk_step_major=max(script_df$chunk_step_major)+1, 
+#                               chunk_step_minor=0))
+print(script_df)
+```
+
+```
+##        chunk_label chunk_step_major chunk_step_minor
+## 1      import_data                1                0
+## 2     inspect_data                2                1
+## 3 extract_features                3                0
 ```
 
 Null Hypothesis ($\sf{H_{0}}$): mpg is not impacted by am_fctr.  
@@ -269,6 +447,7 @@ We reject the null hypothesis i.e. we have evidence to conclude that am_fctr imp
 
 
 
+
 ```
 ## R version 3.1.2 (2014-10-31)
 ## Platform: x86_64-apple-darwin13.4.0 (64-bit)
@@ -280,14 +459,14 @@ We reject the null hypothesis i.e. we have evidence to conclude that am_fctr imp
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-## [1] sos_1.3-8       brew_1.0-6      doBy_4.5-13     survival_2.38-1
-## [5] ggplot2_1.0.0  
+## [1] plyr_1.8.1      sos_1.3-8       brew_1.0-6      doBy_4.5-13    
+## [5] survival_2.38-1 ggplot2_1.0.0  
 ## 
 ## loaded via a namespace (and not attached):
 ##  [1] codetools_0.2-10 colorspace_1.2-5 digest_0.6.8     evaluate_0.5.5  
 ##  [5] formatR_1.0      grid_3.1.2       gtable_0.1.2     htmltools_0.2.6 
 ##  [9] knitr_1.9        lattice_0.20-30  MASS_7.3-39      Matrix_1.1-5    
-## [13] munsell_0.4.2    plyr_1.8.1       proto_0.3-10     Rcpp_0.11.4     
-## [17] reshape2_1.4.1   rmarkdown_0.5.1  scales_0.2.4     splines_3.1.2   
-## [21] stringr_0.6.2    tcltk_3.1.2      tools_3.1.2      yaml_2.1.13
+## [13] munsell_0.4.2    proto_0.3-10     Rcpp_0.11.4      reshape2_1.4.1  
+## [17] rmarkdown_0.5.1  scales_0.2.4     splines_3.1.2    stringr_0.6.2   
+## [21] tcltk_3.1.2      tools_3.1.2      yaml_2.1.13
 ```

@@ -74,6 +74,7 @@ if (glb_separate_predict_dataset) {
     myprint_df(predict_df)
     str(predict_df)
 }
+
 script_df <- rbind(script_df, 
                    data.frame(chunk_label="inspect_data", 
                               chunk_step_major=max(script_df$chunk_step_major)+1, 
@@ -91,13 +92,46 @@ print(script_df)
 # date:
 # interval:
 
-#print(summary(entity_df))
+print(summary(entity_df))
+print(summary(predict_df))
+
 #pairs(subset(entity_df, select=-c(col_symbol)))
+
+#   Histogram of predictor in entity_df & predict_df
+# Check for predict_df & entity_df features range mismatches
 
 # Create new features that help diagnostics
 #   Convert factors to dummy variables
 #   Build splines   require(splines); bsBasis <- bs(training$age, df=3)
 
+script_df <- rbind(script_df, 
+                   data.frame(chunk_label="extract_features", 
+                              chunk_step_major=max(script_df$chunk_step_major)+1, 
+                              chunk_step_minor=0))
+print(script_df)
+```
+
+## Step ``r script_df[nrow(script_df), "chunk_step_major"]``: extract features
+```{r extract_features, cache=TRUE}
+require(plyr)
+entity_df <- mutate(entity_df, 
+    HighSodium = as.numeric(Sodium >= mean(entity_df$Sodium, na.rm=TRUE)),
+    HighProtein = as.numeric(Protein >= mean(entity_df$Protein, na.rm=TRUE)),
+    HighCarbs = as.numeric(Carbohydrate >= mean(entity_df$Carbohydrate, na.rm=TRUE)),
+    HighFat = as.numeric(TotalFat >= mean(entity_df$TotalFat, na.rm=TRUE))
+                    )
+
+table(entity_df$HighSodium)
+table(entity_df$HighSodium, entity_df$HighFat)
+tapply(entity_df$Iron, entity_df$HighProtein, mean, na.rm=TRUE)
+tapply(entity_df$VitaminC, entity_df$HighCarbs, max, na.rm=TRUE)
+tapply(entity_df$VitaminC, entity_df$HighCarbs, summary)
+
+# script_df <- rbind(script_df, 
+#                    data.frame(chunk_label="extract_features", 
+#                               chunk_step_major=max(script_df$chunk_step_major)+1, 
+#                               chunk_step_minor=0))
+print(script_df)
 ```
 
 Null Hypothesis ($\sf{H_{0}}$): mpg is not impacted by am_fctr.  
@@ -136,6 +170,7 @@ We reject the null hypothesis i.e. we have evidence to conclude that am_fctr imp
 
 #plot(mdl_1$finalModel, uniform=TRUE, main="base")
 #text(mdl_1$finalModel, use.n=TRUE, all=TRUE, cex=0.8)
+
 
 
 ```{r print_sessionInfo, echo=FALSE}
